@@ -40,3 +40,7 @@ dd/mm/yyyy
 
 I have started working on basic code which would control the logic of RPi, and indicate whether the power is present or not. I am currently working with this script in python, but I will asses if it would make sense to run this part of the logic as a BASH script, as this could later on make it easier to automatically run it, even if Pi was turned on, i.e. make it run on boot.
 I have worked out how to run the GPIO library in Python, as well as understanding the use of the pull-down and pull-up resistors. I have been able to produce a simple program, which updates every second, displaying in the console if the power is present or if it is absent. As evidenced by the video recording - it works, and the next step would be working out how to set up a database, where the data will be logged to.
+
+01/08/2025
+
+Setting up workspace with version control and RPi connected through SSH to my personal laptop
