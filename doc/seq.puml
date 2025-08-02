@@ -1,0 +1,93 @@
+@startuml
+boundary    "USB 5V" as usb
+boundary     Relay    as relay
+
+box RaspberryPi
+    boundary    GPIO as gpio
+    control     cron
+    control     "Read PIN"    as read_pin
+    control     "Aggregate Readings"    as aggregation
+end box
+
+' entity "Minute Reading" as reading
+' entity "Hourly Aggregate" as hourly_aggregate
+' entity "Daily Aggregate" as daily_aggregate
+
+
+box ASW DynamoDB 
+    database "blackout-monitor-minutes" as db_mins
+    database "blackout-monitor-hours" as db_hours
+    database "blackout-monitor-days" as db_days
+end box
+box AWS S3 
+    database "Web UI on S3" as front
+end box
+
+control  "Web browser" as chrome  #green
+actor User as user #green
+
+group Readings every minute 
+
+    activate relay
+    activate gpio
+    activate usb
+
+    usb->relay: 5V 
+    gpio->relay: 3.3V
+    relay-->gpio: 3.3V
+ 
+    activate cron
+    cron -> read_pin: Read GPIO 
+    deactivate cron
+    activate read_pin
+    read_pin -> gpio: Read PIN
+    gpio --> read_pin: PIN Status
+
+    read_pin -> db_mins: PUT device, pin, timestamp: reading
+ 
+
+    deactivate read_pin
+
+end
+
+
+group Aggregation every hour 
+    activate cron
+    cron -> aggregation: Run aggregation
+    deactivate cron
+    
+    activate   aggregation
+
+    aggregation -> db_mins: query new readings
+    db_mins --> aggregation: readings items
+    aggregation -> aggregation: aggregate minutes to hours
+    aggregation -> db_hours: PUT device, pin, timestamp: on, off, unknown
+   
+    aggregation -> db_hours: query new hourly statistic
+    db_hours --> aggregation: hourly items
+    aggregation -> aggregation: aggregate hours to days
+    aggregation -> db_days: PUT device, pin, timestamp: on, off, unknown
+
+    deactivate aggregation
+end
+
+group User
+    activate user
+    user -> chrome: Get Statistic
+
+    activate chrome
+   
+    chrome -> front: Get Web App
+    front --> chrome: Web App
+    chrome -> db_days: Query Daily Statistic
+    db_days --> chrome: Daily Items
+    chrome -> db_hours: Query Hourly Statistic
+    db_hours --> chrome: Hours Items
+    chrome -> db_mins: Query readings
+    db_mins --> chrome: Raw Reading Items
+    chrome --> user: Statistic on UI
+
+    deactivate chrome
+    deactivate user
+end
+@enduml

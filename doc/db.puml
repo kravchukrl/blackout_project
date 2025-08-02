@@ -1,0 +1,142 @@
+@startuml
+' hide the spot
+' hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "blackout-monitor-minutes" as mins {
+  *device : String <<pk>> <<pk_status>>
+  *sensor : String <<pk>> <<pk_status>>
+  *date: String <<pk>>
+  *status: ProcessingStatus <<pk_status>>  
+  *time: String <sk>
+  *ts : String <<sk_status>>
+  --
+  *reading: Reading
+}
+entity "blackout-monitor-hours" as hours {
+  *device : String <<pk>> <<pk_status>>
+  *sensor : String <<pk>> <<pk_status>>
+  *date: String <<pk>>
+  *status: ProcessingStatus <<pk_status>>  
+  *time: String <sk>
+  *ts : String <<sk_status>>
+  --
+  *count: Number
+  *expected: Number
+  *off: Number
+  *on: Number
+  *unknown: Number
+
+}
+entity "blackout-monitor-days" as days {
+  *device : String <<pk>> <<pk_status>>
+  *sensor : String <<pk>> <<pk_status>>
+  *date: String <<pk>>
+  *status: ProcessingStatus <<pk_status>>  
+  *time: String <sk>
+  *ts : String <<sk_status>>
+  --
+  *count: Number
+  *expected: Number
+  *off: Number
+  *on: Number
+  *unknown: Number
+
+}
+days --> hours
+hours --> mins
+
+note bottom of days
+  Stores <b>daily</b> aggregated readings calculated from ""blackout-monitor-hours"" 
+  <b>Field Notes</b>
+  |= field|= description |= example |
+  | date | UTC Month, ""YYYY-MM"" | ""2025-08"" |
+  | time | UTC Day, ""DD"" | ""02"" |
+  | count | Number of raw minutes readings | ""1300"" |
+  | expected | Expected minutes readings, always 1440 | ""1440"" |
+  | off | OFF readings | ""300"" |
+  | on | ON readings | ""1000"" |
+  | unknown | Number of missed readings, ""expected=on+off+unknown""  | ""140"" |
+
+  <i>If field description missed refer to ""blackout-monitor-minutes"" doc </i> 
+
+  <b>Partition Key,Sort Key</b>
+   <b>pk</b>=""device,sensor,date""
+   <b>sk</b>=""time""
+  <i>i.e.</i> 
+  pk=""device#anton_rpi#sensor#4#date#2025-06-21""
+  sk=""time#19""
+  
+  <b>Index sk_status-index</b>
+  <i>The same as ""blackout-monitor-minutes"" doc </i> 
+
+end note
+note bottom of hours
+  Stores <b>hourly</b> aggregated readings calculated from ""blackout-monitor-minutes"" 
+  <b>Field Notes</b>
+  |= field|= description |= example |
+  | date | UTC Day, ""YYYY-MM-DD"" | ""2025-08-02"" |
+  | time | UTC Hour, ""HH"" | ""15"" |
+  | count | Number of raw minutes readings | ""54"" |
+  | expected | Expected minutes readings, always 60 | ""60"" |
+  | off | OFF readings | ""14"" |
+  | on | ON readings | ""40"" |
+  | unknown | Number of missed readings, ""expected=on+off+unknown""  | ""6"" |
+
+  <i>If field description missed refer to ""blackout-monitor-minutes"" doc </i> 
+
+  <b>Partition Key,Sort Key</b>
+   <b>pk</b>=""device,sensor,date""
+   <b>sk</b>=""time""
+  <i>i.e.</i> 
+  pk=""device#anton_rpi#sensor#4#date#2025-06-21""
+  sk=""time#19""
+  
+  <b>Index sk_status-index</b>
+  <i>The same as ""blackout-monitor-minutes"" doc </i> 
+
+end note
+
+note bottom of mins
+  Stores minutes raw readings from device sensor 
+  <b>Field Notes</b>
+  |= field|= description |= example |
+  | device | Device alias | ""Anton RPi""|
+  | sensor | Sensor name (i.e GPIO pin) |""4"" |
+  | reading |  On/OFF | ""0"" |
+  | date | UTC Hours, ""YYYY-MM-DD-HH"" | ""2025-08-02-15"" |
+  | time | UTC Minutes, ""mm"" | ""58"" |
+  | ts | Reading timestamp, ISO 8601 | ""2025-08-02T15:58:03.474695+00:00""|
+
+  <b>Partition Key,Sort Key</b>
+   <b>pk</b>=""device,sensor,date""
+   <b>sk</b>=""time""
+  <i>i.e.</i> 
+  pk=""device#anton_rpi#sensor#4#date#2025-06-21-19""
+  sk=""time#01""
+  
+  <b>Index sk_status-index</b>
+   <b>pk_status</b>="">device,sensor,status""
+   <b>ts</b>=""ts""
+  <i>i.e.</i> 
+  <b>pk_status</b>=""device#alex_rpi#sensor#4#status#done""
+  <b>ts</b>=""2025-06-21T19:00:03.241969+00:00""
+end note
+enum Reading {
+  0 : Number
+  1 : Number
+  -- description --
+  0: OFF
+  1: ONN
+}
+enum ProcessingStatus {
+  done : String
+  new: String
+  -- description --
+  done: Processed
+  new: Not processed yet
+}
+
+@enduml

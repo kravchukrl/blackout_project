@@ -1,0 +1,58 @@
+@startuml
+
+node "USB receptacle,5V" as usb_port #grey
+node "USB plug" as usb #green
+usb_port -[#red]-> usb: " +5V"
+usb_port -[#blue]-> usb: " -5V" 
+
+node  relay #green[
+    <b>Relay</b> 
+    <b>VCC</b> Supply input for powering the relay coil
+    <b>Ground</b> 0V reference
+    <b>Input</b> Input to activate the relay
+    <b>Common</b> Common terminal of the relay
+    <b>NC</b> Normally closed contact of the relay
+]
+usb -[#red]-> relay: " + to VCC and  Input"
+usb -[#blue]-> relay: " -5V to Ground"
+
+
+package RPi{
+    node gpio [
+        <b>GPIO</b>
+        pin0: 3V3 power
+        GPIO ""x"":Read Pin
+    ]  
+    node cron
+    node "read_pin.py" as read_py
+    node "aggregate.py" as aggregate
+    
+}
+
+gpio -[#orange]-> relay: pin0 to Common
+relay -[#orange]-> gpio: NC to GPIO <x>
+read_py -- gpio
+cron -- read_py 
+cron -- aggregate 
+
+
+package AWS{
+    node dynamoDB  [
+        <b>Amazon DynamoDB</b>
+        ""blackout-monitor-minutes""
+        ""blackout-monitor-hours""
+        ""blackout-monitor-days""
+    ]  
+    node s3  [
+        <b>Amazon SW</b>
+        ""Web App""
+    ]  
+}
+read_py -- dynamoDB
+aggregate -- dynamoDB
+
+actor User as user
+
+s3 -- user
+dynamoDB -- user
+@enduml
