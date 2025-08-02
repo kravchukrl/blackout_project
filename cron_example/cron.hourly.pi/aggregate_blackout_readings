@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Aggregate blackout readings
+
+(cd  /home/pi/dev/blackout/; ./.venv/bin/python aggregate.py alex_rpi 4 dev)
+

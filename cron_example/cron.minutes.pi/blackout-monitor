@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Push status of GPIO to dynamo db 
+
+(cd  /home/pi/dev/blackout/; ./.venv/bin/python read_pin.py alex_rpi 4 dev)
+
