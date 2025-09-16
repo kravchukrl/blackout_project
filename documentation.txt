@@ -4,7 +4,7 @@ Problem: Blackouts in Ukraine, temporary loss of power/electiricty in a househol
   
 A system, wherein a user would have a microcomputer (most commonly Raspberry Pi) connected to power, through a Ups, with a reader connected to read off if power is present.
 The readings would be tkaen each minute, and stored in a database.
-A dynamically updating website would be hosted, which would offer the user a visual display of the data concering if the power is present, with minute wise, hour wise and day wise breakdowns.
+A dynamically updating website would be hosted, which would offer the user a visual display of the data concerning if the power is present, with minute wise, hour wise and day wise breakdowns.
 Alternatively, option to choose the dates they are interested in themselves is also given.
 
 2.1 Investigating the project problem
@@ -16,4 +16,14 @@ Alternatively, option to choose the dates they are interested in themselves is a
     "Yes. I would like the usage to be as unobtrusive as possible. I would also like for both the setup and implementation to be as homogenous as possible, as I could see it being beneficial that code for the project could run on any version of Raspberry PI."
   Q2 - "Given a website, where you are given a breakdown of when power was absent, how would you like this data to be presented?"
     "A by minute tracker would be great, and it would be great to see how much in an hour, or a day power was absent. It would also be great to be able to set custom dates , between which I could see when power was not present, say if I wasn't howe for a week, or 5 days, and see when power was absent."
-  Q3
+  At this point EV asked me how I would go about actually reading if power is present or not. I explained to EV that I was planning to take readings through the GPIO pins, connected to a relay module, from which a cable going to USB-A connector, which could then be connected to a regular wall socket via an adapter.
+  "So if I already use a pin which you wanted to use, how would that work?" -EV
+  "There are alternate pins, and it's unlikely you are using all of them" - Myself
+  "Well that means that you can't hardcode them into your program" 
+  An astute observation, which I'll have to account for.
+  Another concern that EV has raised is that the additional parts need to be easily procurable and accessible, with best case scenario not involving soldering
+  I will take keep this in mind, as this means that I wouldn't be able to use a pre made solution, as well as making sure that assembly is intuitive.
+  Q3 - "What would you want to see from the website the data would be displayed on?"
+    "I would want it to update in real time, showing on the website, for example, if the power is absent right now. Dynamic content would be great, but I'm sure you can understand, I would want my data to be as up to date as possible, not just waiting for me to update"
+  Q4 - "Obviously, I'm going to be using a database to store data readings. Do you have any comments on how it should be done?"
+    "First of all, obviously SQL won't cut it, it would just be wasteful, and there is not many tables with connections we would need ot create. Secondly, you might want to look into hosting an online database, since hosting your own physcially would require a lot of effort, in terms of keeping back ups of data, making sure that the database is also powered on constantly and increases in latency. The issue with power, you know, being the biggest problem"
