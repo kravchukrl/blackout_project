@@ -8,6 +8,15 @@ A dynamically updating website would be hosted, which would offer the user a vis
 Alternatively, option to choose the dates they are interested in themselves is also given.
 
 2.1 Investigating the project problem
+  Interview with 
+  Date of Interview: /06/2025
+  Place of Interview: Online
+  Q1 - "Describe what a blackout is and how prevalent of a problem that is for Ukrainians currently"
+  Q2 - ""
+  Q3 - "Do you see a benefit in tracking blackouts?"
+  Q4 - "What kind of devices would be avaliable for use in the project?"
+
+
   Interview with EV, a Ukrainian Computer Science student
   Date of Interview: /07/2025
   Place of Interview: Online
@@ -27,3 +36,10 @@ Alternatively, option to choose the dates they are interested in themselves is a
     "I would want it to update in real time, showing on the website, for example, if the power is absent right now. Dynamic content would be great, but I'm sure you can understand, I would want my data to be as up to date as possible, not just waiting for me to update"
   Q4 - "Obviously, I'm going to be using a database to store data readings. Do you have any comments on how it should be done?"
     "First of all, obviously SQL won't cut it, it would just be wasteful, and there is not many tables with connections we would need ot create. Secondly, you might want to look into hosting an online database, since hosting your own physcially would require a lot of effort, in terms of keeping back ups of data, making sure that the database is also powered on constantly and increases in latency. The issue with power, you know, being the biggest problem"
+
+
+
+
+Target audience - Ukrainian users, who wish to be able to track when blackouts are happenning as a means of gathering data, tracking presence of power on an estate they don't currently live on, or to able to take care of devices which require constant power supply (e.g. servers, fridges). Assume they possess a reasonable understanding of computers.
+Aims and objectives of the current system - Recording readings on a Raspberry Pi on if the power is present? Uploading them to an online hosted database
+  
