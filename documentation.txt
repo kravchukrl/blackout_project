@@ -18,10 +18,14 @@ Alternatively, option to choose the dates they are interested in themselves is a
   Q3 - "Do you see a benefit in tracking blackouts?"
     "It definetely has a use, yes. It would be great for example to have for properties you might not live constantly in, or for example to have an option to track if power is present for your older relatives, and/or in rural ares, to be able to check in with them. It would be also great if there are devices whcih require constnat supply of electricity, like fridges, freezers or even medical equipment."
   Q4 - "What kind of devices would be avaliable for use in the project?"
-    "In general, you can expect a Ukrainina hosehold to have some kind of Personal Computer or Laptop, but no guaranteees that it will be powerful. Any kind of affrodable device, like a microcomputer, or an esaily assemblable circuit could work."
+    "In general, you can expect a Ukrainians hosehold to have some kind of Personal Computer or Laptop, but no guaranteees that it will be powerful. Any kind of affrodable device, like a microcomputer, or an esaily assemblable circuit could work."
   Q5 - "What way of receiving data about blackouts would be useful? Would you like to receive SMS/EMail notifications?"
-    "SMS ir Email I'm afraid would be to cloggy for me, I find that website that can notify you in real time, as well as giving a breakdown of statistics would be the best and most useful - easily acessible from everywhere(phone/laptop), would give a better overtime understanding and compatible with every OS"
+    "SMS or Email I'm afraid would be to cloggy for me, I find that website that can notify you in real time, as well as giving a breakdown of statistics would be the best and most useful - easily acessible from everywhere(phone/laptop), would give a better overtime understanding and compatible with every OS"
 
+
+2.2 Decribing problem to be solved.
+
+2.3 Modelling the problem or the existing system.
 
   Interview with EV, a Ukrainian Computer Science student
   Date of Interview: /07/2025
