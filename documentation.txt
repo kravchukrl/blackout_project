@@ -25,6 +25,17 @@ Alternatively, option to choose the dates they are interested in themselves is a
 
 2.2 Decribing problem to be solved.
 
+Currently the idea is sending a reading (1 for power is present, 0 for power is absent) to a database, which stores all readings.
+From there, a website would be set up do display visualisations of the data.
+
+What am I going to use as a device to track blackouts?
+The most optimal solution would be to design something that could be used with any computer/laptop as an add-on, and then running the script itself on the computer. 
+The benefits are:
+Add-on would be small, and therefore affordable 
+easy
+Drawbacks:
+Intrusive to the personal computer
+
 2.3 Modelling the problem or the existing system.
 
   Interview with EV, a Ukrainian Computer Science student
