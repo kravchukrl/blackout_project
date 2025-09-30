@@ -29,19 +29,33 @@ Currently the idea is sending a reading (1 for power is present, 0 for power is 
 From there, a website would be set up do display visualisations of the data.
 
 What am I going to use as a device to track blackouts?
-The most optimal solution would be to design something that could be used with any computer/laptop as an add-on, and then running the script itself on the computer. 
+One way is ot use a microcomputer with input output pins.
+By connecting IO pins to a relay, and relay then to a usb cable, that could be connected to wall socket through an adapter - by reading if power is present we will be able ot take a reading.
+Since Arduino microcomputers have limited capabilities, we would need to use a separate computer/laptop to update a database.
 The benefits are:
 Add-on would be small, and therefore affordable 
-easy
+Compact
 Drawbacks:
-Intrusive to the personal computer
+Intrusive to the personal computer, as codeneeded to run would have to be put in personal files.
+Virtual machine could mitigate that, but that would make troubleshooting harder, add a level of complexity, make it less intuitive to set up and take too much resources.
+If the user were to take their laptop somewhere, the tracking would stop.
+If the user isn't home, that would mean that the main laptop/computer would have to stay turned on constantly
+These drawbacks are significant, but the idea with IO pins has value, as well as being one of the best impelementations of power tracking.
+Another way would be using a full power microcomputer with IO pins, such as Raspberry Pi
+Raspberry Pi microcomputers are the ones which fit the best, the most recognisable, and as such easy to acquire, while being affordable.
+This would mitigate the drawbacks previous idea had completely, while stil being considerably compact.
+While being more expensive than a small arduino board, it would save money on power draw (in comparison to having a full-power computer run in addition to arduino)
+
+
+
+
 
 2.3 Modelling the problem or the existing system.
 
   Interview with EV, a Ukrainian Computer Science student
   Date of Interview: /07/2025
   Place of Interview: Online
-  After laying out the idea behind the project, I have asked EV, as a possible end user q number of questions
+  After laying out the idea behind the project, I have asked EV, as a possible end user a number of questions
   Q1 - "You own and use on a constant basis a Raspberry Pi microcomputer, could you see utilising it in this project as well?"
     "Yes. I would like the usage to be as unobtrusive as possible. I would also like for both the setup and implementation to be as homogenous as possible, as I could see it being beneficial that code for the project could run on any version of Raspberry PI."
   Q2 - "Given a website, where you are given a breakdown of when power was absent, how would you like this data to be presented?"
@@ -57,6 +71,14 @@ Intrusive to the personal computer
     "I would want it to update in real time, showing on the website, for example, if the power is absent right now. Dynamic content would be great, but I'm sure you can understand, I would want my data to be as up to date as possible, not just waiting for me to update"
   Q4 - "Obviously, I'm going to be using a database to store data readings. Do you have any comments on how it should be done?"
     "First of all, obviously SQL won't cut it, it would just be wasteful, and there is not many tables with connections we would need ot create. Secondly, you might want to look into hosting an online database, since hosting your own physcially would require a lot of effort, in terms of keeping back ups of data, making sure that the database is also powered on constantly and increases in latency. The issue with power, you know, being the biggest problem"
+
+Using self-hosted databses vs An Online database
+
+Type of database to be used
+
+Presenting breakdown of information on the website
+
+Setting up Rapsberry Pi to work in a way that the code is isolated from anything else user might use
 
 
 
