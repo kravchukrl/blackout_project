@@ -1,20 +1,24 @@
 Main Idea: Blackout Alarm
 
 Problem: Blackouts in Ukraine, temporary loss of power/electiricty in a household, and inability to track these losses.
-  
-A system, wherein a user would have a microcomputer (most commonly Raspberry Pi) connected to power, through a Ups, with a reader connected to read off if power is present.
-The readings would be tkaen each minute, and stored in a database.
-A dynamically updating website would be hosted, which would offer the user a visual display of the data concerning if the power is present, with minute wise, hour wise and day wise breakdowns.
-Alternatively, option to choose the dates they are interested in themselves is also given.
+
+There currently doesn't exist a system that would allow for alarming and tracking of blackouts at the same time, depsite that being a prevalent problem Ukranian people face as a result of the full-scale invasion. 2.5 years since the first attacks on February 24th, Russia still continues to bomb Ukraine systematically, commonly targeting the electrical infrastructure of the country, causing blackouts. On 11th of September 2022 the first massively targeted strike on Ukrainian energy infrastructure was conducted, taking lives of countless civilians and members of military, further on 11th of September being the day of memory for electricians in Ukraine. Further on, this was a start to blackout in Ukraine, becoming a commonplace issue.
+
+
+There exist socket power adapters which could be connected by bluetooth to alert you on the phone/in the app when power is absent, but the apps for these offer very little in terms of actually tracking blackouts, as well as requiring installing an app, which risks bloat. Something like an SMS or Email would be best. 
+
+*insert example of photos of blackout alarms availiable, and a bit of analysis of options*
+
+My plan is to create a system that would be able to track/alert to blackouts happening, relaying if any occur. To understand what needs to be done, I'm going to interview OK, to give a baseline for the terms being discussed in the project, as well as starting to shape up the project, or what needs to be done.
 
 2.1 Investigating the project problem
-  Interview with 
+  Interview with OK
   Date of Interview: /06/2025
   Place of Interview: Online
   Q1 - "Describe what is a blackout is and how prevalent of a problem that is for Ukrainians currently"
     "A blackout is a power outage for a household in Ukraine, due to how energetical infrastructure is damaged due to targeted attacks and bombings. Sometimes there are planned blackouts, where you are told the time you will have no electircity in your household upfront, and those are done to lessen the strain on the infrastructure. However they can still drag on for longer than expected, and at times of attacks there are still spontaneous blackouts."
   Q2 - "How long can blackouts be?"
-    "Planned blackouts are usually no more than a few hours, but as I mentioned, they can drag on for longer than we are told, and the spontaneous blackouts really have no upper limit, it depends on how severe the attack was and if an electrical station was damaged"
+    "Planned blackouts are usually no more than a few hours, but as I mentioned, they can drag on for longer than forecast, and the spontaneous blackouts really have no upper limit, it depends on how severe the attack was and if an electrical station was damaged"
   Q3 - "Do you see a benefit in tracking blackouts?"
     "It definetely has a use, yes. It would be great for example to have for properties you might not live constantly in, or for example to have an option to track if power is present for your older relatives, and/or in rural ares, to be able to check in with them. It would be also great if there are devices whcih require constnat supply of electricity, like fridges, freezers or even medical equipment."
   Q4 - "What kind of devices would be avaliable for use in the project?"
